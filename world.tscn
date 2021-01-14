@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://player/player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://gui/hud.tscn" type="PackedScene" id=2]
+[ext_resource path="res://player/target.gd" type="Script" id=3]
+
+[sub_resource type="SphereMesh" id=3]
+
+[sub_resource type="SphereShape" id=4]
+
+[sub_resource type="CubeMesh" id=1]
+
+[sub_resource type="ConcavePolygonShape" id=2]
+data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
+
+[node name="World" type="Spatial"]
+
+[node name="Hud" parent="." instance=ExtResource( 2 )]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+
+[node name="Target" type="StaticBody" parent="." groups=[
+"Targets",
+]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9953, 0, 0 )
+script = ExtResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Target"]
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Target"]
+shape = SubResource( 4 )
+
+[node name="Target2" type="StaticBody" parent="." groups=[
+"Targets",
+]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9978, 0.0130429, 3.70422 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Target2"]
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Target2"]
+shape = SubResource( 4 )
+
+[node name="Target3" type="StaticBody" parent="." groups=[
+"Targets",
+]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9978, 0.0130429, 8.76795 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Target3"]
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Target3"]
+shape = SubResource( 4 )
+
+[node name="Weapons" type="Node" parent="."]
+
+[node name="Ground" type="MeshInstance" parent="."]
+transform = Transform( 25.3061, 0, 0, 0, 0.0569823, 0, 0, 0, 21.4248, -0.0608523, -2.07941, 0.0329714 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Ground"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Ground/StaticBody"]
+shape = SubResource( 2 )
